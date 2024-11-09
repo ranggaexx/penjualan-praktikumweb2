@@ -1,13 +1,13 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 class Barang_model extends CI_Model
 {
-    protected $_table = "barang";
-    protected $primary = "id";
+    protected $_table = 'Barang';
+    protected $primary = 'id';
+
     public function getAll()
     {
-
-        $sql = "SELECT a.id, a.barcode, a.name, b.name AS satuan, c.name AS kategori, a.harga_beli, a.harga_jual, a.stok FROM ((barang a LEFT JOIN satuan b ON a.
-        satuan_id = b.id) LEFT JOIN kategori c ON a.kategori_id = c.id)";
+        $sql = "SELECT a.id, a.barcode, a.name, b.name AS satuan, c.name AS katagori, a.harga_beli, a.harga_jual, a.stok_barang FROM ((barang a LEFT JOIN satuan b ON a.
+        id_satuan = b.id) LEFT JOIN katagori c ON a.id_katagori = c.id)";
         return $this->db->query($sql)->result();
     }
 
@@ -18,12 +18,11 @@ class Barang_model extends CI_Model
             'name' => htmlspecialchars($this->input->post('name'), true),
             'harga_beli' => htmlspecialchars($this->input->post('harga_beli'), true),
             'harga_jual' => htmlspecialchars($this->input->post('harga_jual'), true),
-            'stok' => htmlspecialchars($this->input->post('stok'), true),
-            'kategori_id' => htmlspecialchars($this->input->post('kategori'), true),
-            'satuan_id' => htmlspecialchars($this->input->post('satuan'), true),
-            'supplier_id' => htmlspecialchars($this->input->post('supplier'), true),
-            'user_id' => $this->session->userdata("id"),
-            //$this->session->userdata("userid')
+            'stok_barang' => htmlspecialchars($this->input->post('stok_barang'), true),
+            'id_katagori' => htmlspecialchars($this->input->post('Katagori'), true),
+            'id_satuan' => htmlspecialchars($this->input->post('Satuan'), true),
+            'id_supplier' => htmlspecialchars($this->input->post('Supplier'), true),
+            'id_user' => $this->session->userdata('id')
         );
         return $this->db->insert($this->_table, $data);
     }
@@ -33,7 +32,7 @@ class Barang_model extends CI_Model
         return $this->db->get_where($this->_table, ["id" => $id])->row();
     }
 
-
+    
     public function editData()
     {
         $id = $this->input->post('id');
@@ -42,21 +41,20 @@ class Barang_model extends CI_Model
             'name' => htmlspecialchars($this->input->post('name'), true),
             'harga_beli' => htmlspecialchars($this->input->post('harga_beli'), true),
             'harga_jual' => htmlspecialchars($this->input->post('harga_jual'), true),
-            'stok' => htmlspecialchars($this->input->post('stok'), true),
-            'kategori_id' => htmlspecialchars($this->input->post('kategori'), true),
-            'satuan_id' => htmlspecialchars($this->input->post('satuan'), true),
-            'supplier_id' => htmlspecialchars($this->input->post('supplier'), true),
-            'user_id' => $this->session->userdata("id"),
-            //$this->session->userdata("userid')
+            'stok_barang' => htmlspecialchars($this->input->post('stok_barang'), true),
+            'id_katagori' => htmlspecialchars($this->input->post('Katagori'), true),
+            'id_satuan' => htmlspecialchars($this->input->post('satuan'), true),
+            'id_supplier' => htmlspecialchars($this->input->post('Supplier'), true),
+            'id_user' => $this->session->userdata('id')
         );
-        return $this->db->set($data)->where($this->primary, $id)->update($this->_table);
+        return $this->db->set($data)->where($this->primary,$id)->update($this->_table);
     }
 
     public function delete($id)
     {
         $this->db->where('id', $id)->delete($this->_table);
-        if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata("success", "Data Kategori Berhasil DiDelete");
+        if($this->db->affected_rows()>0) {
+            $this->session->set_flashdata("success", "Data Barang Berhasil Dihapus!");
         }
     }
 }

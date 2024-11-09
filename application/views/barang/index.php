@@ -2,12 +2,12 @@
     <div class="container-fluid px-4">
         <h1 class="mt-4"></h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="<?php echo site_url('barang') ?>">Barang</a></li>
+            <li class="breadcrumb-item"><a href="<?php echo site_url('Barang') ?>">Barang</a></li>
             <li class="breadcrumb-item active"><?php echo $title ?></li>
         </ol>
         <div class="card mb-4">
             <div class="card-header">
-                <a href="<?php echo site_url('barang/add') ?>"><i class="fas fa-plus"></i> Add New</a>
+                <a href="<?php echo site_url('Barang/add') ?>"><i class="fas fa-plus"></i>Add New</a>
             </div>
             <?php if ($this->session->flashdata('success')): ?>
                 <div class="alert alert-success" role="alert">
@@ -16,8 +16,7 @@
             <?php endif; ?>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover" id="tabelkelas" width="100%"
-                        cellspacing="0">
+                    <table class="table table-striped table-bordered table-hover" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>No.</th>
@@ -26,35 +25,31 @@
                                 <th>Satuan</th>
                                 <th>Kategori</th>
                                 <th>Stok</th>
-                                <th>Harga bell</th>
-                                <th>Harga Jual</th>
+                                <th>Harga beli</th>
+                                <th>Harga jual</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             $no = 1;
-                            foreach ($barang as $barang) {
-                                echo "
-                            <tr>
+                            foreach ($Barang as $Barang) {
+                                echo "<tr>
                                 <td>$no</td>
-                                <td>$barang->barcode</td>
-                                <td>$barang->name</td>
-                                <td>$barang->satuan</td>
-                                <td>$barang->kategori</td>
-                                <td>$barang->stok</td>
-                                <td>$barang->harga_beli</td>
-                                <td>$barang->harga_jual</td>
+                                <td>$Barang->barcode</td>
+                                <td>$Barang->name</td>
+                                <td>$Barang->satuan</td>
+                                <td>$Barang->katagori</td>
+                                <td>$Barang->stok_barang</td>
+                                <td>$Barang->harga_beli</td>
+                                <td>$Barang->harga_jual</td>
                                 <td>
-                                    <div>
-                                        <a href=" . base_url('barang/getedit/' . $barang->id) . " class='btn btn-sn                                                                                                       
-                                            btn-info'> <i class='fa fa-edit'></i> Edit</a>                                                                                                                                                                                              
-                                        <a href=" . base_url('barang/delete/' . $barang->id) . " class='btn btn-sn btn-danger'
-                                                onclick='return confirm(\"Ingin mengapus data user ini?\");'>
-                                                <i class='fas fa-trash'></I> Hapus</a>
-                                    </div>
+                                <div>
+                                <a href=" . base_url('Barang/getedit/' . $Barang->id) . " class='btn btn-sm btn-info'><i class='fas fa-edit'></i> Edit</a>
+                                <a href=".base_url('Barang/delete/' . $Barang->id)." class='btn btn-sm btn-danger' onclick='return confirm(\"Ingin menghapus data ini?\");'><i class='fas fa-trash'></i>Hapus</a>
+                                </div>
                                 </td>
-                            </tr>";
+                                </tr>";
                                 $no++;
                             } ?>
                         </tbody>
@@ -62,4 +57,5 @@
                 </div>
             </div>
         </div>
+    </div>
 </main>

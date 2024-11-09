@@ -1,20 +1,20 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
-class Supplier extends CI_Controller
-{
+defined('BASEPATH') OR exit('No direct script access allowed');
+class Supplier extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
         $this->load->model('Supplier_model');
         $this->load->library('form_validation');
     }
+
     public function index()
     {
         $data = array(
             'title' => 'View Data Supplier',
             'userlog' => infoLogin(),
-            'supplier' => $this->Supplier_model->getAll(),
-            'content' => 'supplier/index'
+            'Supplier' => $this->Supplier_model->getAll(),
+            'content' => 'Supplier/index'
         );
         $this->load->view('template/main', $data);
     }
@@ -23,44 +23,43 @@ class Supplier extends CI_Controller
     {
         $data = array(
             'title' => 'Tambah Data Supplier',
-            'content' => 'supplier/add_form'
+            'content' => 'Supplier/add_form'
         );
         $this->load->view('template/main', $data);
     }
 
-    public function save()
+    public function Save()
     {
-        $this->Supplier_model->save();
-        if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata("success", "Data Supplier Berhasil DiSimpan");
+        $this->Supplier_model->Save();
+        if($this->db->affected_rows()>0) {
+            $this->session->set_flashdata("success", "data Supplier berhasil disimpan");
         }
-        redirect('supplier');
-    }
-
-    public function edit()
-    {
-        $this->Supplier_model->editData();
-        if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata("success", "Data supplier Berhasil Diupdate");
-        }
-        redirect('supplier');
+        redirect('Supplier');
     }
 
     public function getedit($id)
     {
         $data = array(
             'title' => 'Update Data Supplier',
-            'supplier' => $this->Supplier_model->getById($id),
-            'content' => 'supplier/edit_form'
+            'Supplier' => $this->Supplier_model->getById($id),
+            'content' => 'Supplier/edit_form'
         );
         $this->load->view('template/main', $data);
     }
 
+    public function edit()
+    {
+        $this->Supplier_model->editData();
+        if($this->db->affected_rows()>0) {
+            $this->session->set_flashdata("success", "Data Supplier berhasil diubah!");
+        }
+        redirect('Supplier');
+    }
 
     function delete($id)
     {
         $this->Supplier_model->delete($id);
-        redirect('supplier');
+        redirect('Supplier');
     }
 
 }

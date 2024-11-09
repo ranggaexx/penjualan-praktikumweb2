@@ -1,15 +1,18 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+
 class User extends CI_Controller
 {
     public function __construct()
     {
+
         parent::__construct();
         $this->load->model("User_model");
         $this->load->library('form_validation');
     }
     public function index()
     {
+
         $data = array(
             'title' => 'View Data User',
             'user' => $this->User_model->getAll(),
@@ -17,6 +20,7 @@ class User extends CI_Controller
         );
         $this->load->view('template/main', $data);
     }
+
     public function add()
     {
         $data = array(
@@ -25,11 +29,12 @@ class User extends CI_Controller
         );
         $this->load->view('template/main', $data);
     }
-    public function save()
+
+    public function Save()
     {
         $this->User_model->Save();
         if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata("success", "Data user Berhasil DiSimpan");
+            $this->session->set_flashdata("success", "Data user berhasil disimpan!");
         }
         redirect('user');
     }
@@ -37,7 +42,7 @@ class User extends CI_Controller
     public function getedit($id)
     {
         $data = array(
-            'title' => 'Update Data user',
+            'title' => 'Update Data User',
             'user' => $this->User_model->getById($id),
             'content' => 'user/edit_form'
         );
@@ -48,11 +53,12 @@ class User extends CI_Controller
     {
         $this->User_model->editData();
         if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata("siccess", "Data user Berhasil Diupdate");
+            $this->session->set_flashdata("success", "Data user berhasil di-Update!");
         }
         redirect('user');
     }
-    public function delete($id)
+
+    function delete($id)
     {
         $this->User_model->delete($id);
         redirect('user');

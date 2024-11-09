@@ -12,15 +12,13 @@
                     <code>.sb-nav-fixed</code>
                     class from the
                     <code>body</code>
-                    , the top navigation and side navigation will become static on
-                    scroll. Scroll down this page to see an example.
+                    , the top navigation and side navigation will become static on scroll. Scroll down this page to see an example.
                 </p>
             </div>
         </div>
         <div style="height: 100vh"></div>
         <div class="card mb-4">
-            <div class="card-body">When scrolling, the navigation stays at the top of
-                the page. This is the end of the static navigation demo.</div>
+            <div class="card-body">When scrolling, the navigation stays at the top of the page. This is the end of the static navigation demo.</div>
         </div>
     </div>
 </main>
